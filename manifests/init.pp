@@ -15,11 +15,11 @@ class ntp {
     file { "/etc/ntp.conf":
         mode    => "644",
         content => template("ntp/client-ntp.conf.erb"),
-        notify  => Service["ntpd"],
+        notify  => Service["ntp"],
         require => Package["ntp"],
     } # file
 
-    service { "ntpd":
+    service { "ntp":
         ensure  => running,
         enable  => true,
         require => Package["ntp"],
